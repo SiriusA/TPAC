@@ -1,7 +1,6 @@
 //use www.cplusplus.com as a reference
 #include<iostream>
 #include<fstream>
-#include<string>
 
 using namespace std;
 
