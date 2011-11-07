@@ -1,11 +1,17 @@
+//Jake, your impact variable is found. Use this to figure out how the impact affects your math.
+//The Impacts section starts at Line 215.
+
 var linum=0;
 var stringd="0";
 var impactstring="";
 var numing;
 var dateData="";
+//The next four variables will eventually take data from the form.
 var startDateM=08;
 var startDateD=22;
 var startDateY=2011;
+var hoursReq;
+
 var startDay;
 var dateYear;
 var dateDay;
@@ -13,6 +19,7 @@ var dateMonth;
 var fusionStart;
 var fusionImpact;
 var found=0;
+var foundExport=0;
 function entryForm(){
 	//this parses the form data. RUN THIS FIRST
 }
@@ -85,7 +92,7 @@ function advance(){
 	if (startDay==6)
 	{found=5;}
 	alert(found);
-	parseInt(found);
+	foundExport=parseInt(found);
 	startDay=startDay+1;
 	startDateD=startDateD+1;
 	advanceMonth();
@@ -242,7 +249,6 @@ $(document).ready(function(){
 	retrieval();
 	dateBreak();
 	findWeekDay();
-	alert(impactstring);
 });
 function test(){
 	findWeekDay();
