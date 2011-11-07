@@ -13,6 +13,8 @@ int main(){
 	int x;
 	int n;
 	int stop;
+	int counting;
+	counting=0;
 	string test;
 	string cake;
 	n=1;
@@ -30,23 +32,18 @@ int main(){
 	ifstream is;
 
 	is.open ("Calendar.txt");
-	of.open ("output.htm");
-		of.write("<html><body><ul><li>",20);
-		b.write("<ul><li>",8);
+	b.write("<ul><li>",8);
 	while (is.good())
 	{
 		data=is.get();
 		if (data== '\n')
 		{
-		of.put(data);
 		b.put(data);
 		linenum=linenum+1;
-		of.write("</li><li>",9);
 		b.write("</li><li>",9);
 		}
 		if (is.good())
 		{
-		of.put(data);
 		b.put(data);
 		}
 	}	
@@ -54,25 +51,21 @@ int main(){
 		for (int z=0; z<23; z++)
 		{
 			stringnumd=stringnum.get();
-			cout<<stringnumd;
-			of.put(stringnumd);
 			b.put(stringnumd);
 		}
 		cout<<endl;
-		of.write("</li></ul></body></html>",24);
 		b.write("</li></ul>",10);
 		//test=b.str(); //Testing purposes only
 		//cout<<test<<endl; //Testing purposes only
 	is.close();
-	of.close();
 	//Part2
-	is.open("TPAC.htm");
-	of.open("TPACr.htm");
+	is.open("TPACTemplate.htm");
+	of.open("TPAC.htm");
 	do {
 		data=is.get();
-		a.put(data);
 		if (data=='`')
 		{stop=1;}
+		a.put(data);
 		} while (stop != 1);
 	//test=a.str(); //Testing purposes only
 	//cout<<test<<endl; //Testing purposes only
@@ -82,21 +75,29 @@ int main(){
 	}
 	//test=c.str(); //Testing purposes only
 	//cout<<test<<endl; //Testing purposes only
-	while (a.good())
+	cake=a.str();
+	counting=cake.length();
+	for (int count=0; count<counting-1; count++)
 	{	data=a.get();
 		output.put(data);
 	}
-	while (b.good())
+	cake=b.str();
+	counting=cake.length();
+	for (int count=0; count<counting; count++)
 	{	data=b.get();
 		output.put(data);
 	}
-	while (c.good())
+	cake=c.str();
+	counting=cake.length();
+	for (int count=0; count<counting; count++)
 	{	data=c.get();
 		output.put(data);
 	}
 	//test=output.str(); //Testing purposes only
 	//cout<<test<<endl; //Testing purposes only
-	while (output.good())
+	cake=output.str();
+	counting=cake.length();
+	for (int count=0; count<counting-1; count++)
 	{	data=output.get();
 		of.put(data);
 	}
