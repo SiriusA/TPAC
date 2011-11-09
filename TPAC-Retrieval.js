@@ -253,4 +253,5 @@ $(document).ready(function(){
 function test(){
 	findWeekDay();
 	advance();
+	algorithm();
 }
