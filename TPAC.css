@@ -6,7 +6,22 @@ background-image:url('back.jpg');
 
 #page
 {
+background-color: white;
+padding: 50px;
+width: 600px;
+height: 900px;
+text-align:center;
+border-style:groove;
+border-width:15px;
+border-color: #009900;
+}
 
-
-
+h1
+{
+text-align:center;
+background-color: white; 
+width: 650px;
+border-style:groove;
+border-width:15px;
+border-color: #009900;
 }
