@@ -1,6 +1,8 @@
 //Jake, your impact variable is found. Use this to figure out how the impact affects your math.
 //The Impacts section starts at Line 215.
-
+//Global Variables
+var hoursRequired=600;
+var hoursDay=6;
 var linum=0;
 var stringd="0";
 var impactstring="";
@@ -20,27 +22,88 @@ var fusionStart;
 var fusionImpact;
 var found=0;
 var foundExport=0;
-function entryForm(){
-	//this parses the form data. RUN THIS FIRST
+//How the hell this is coded:
+/*
+Functions:
+getNum()
+getValues()
+algorithm()
+checkFound()
+entryForm()
+classify()
+retrieve()
+retrieval()
+monthBreak()
+dateBreak()
+findWeekDay()
+advance()
+advanceMonth()
+advanceYear()
+fuseDateA()
+fuseDateB()
+dateFind()
+impact()
+hourTicker()
+run()
+*/
+//Algorithm
+
+function getValues(){
+	var hoursRequired=$("input #hoursRequired").attr("value");
+	var hoursDay=$("input #hoursDay").attr("value");
+}
+
+function algorithm() {
+	getValues();
+	totalDays=hoursRequired/hoursDay;
+	alert(totalDays);
+}
+function checkFound() {
+	if (foundExport == 1)
+	{
+		totalDays=totalDays +1;
+	}
+	if (foundExport == 2)
+	{
+		totalDays=totalDays +1;
+	}
+	if (foundExport == 3)
+	{
+		totalDays=totalDays +1;
+	} 
+	alert(totalDays);
+}
+
+//Retrieval Program
+function getNum(){
 	number=$("ul li#number").text();
 	number=parseInt(number)+2;
+}
+
+function entryForm(){
+	//this parses the form data. RUN THIS FIRST
 	startDateM=$("input #startDateM").attr("value");
 	startDateD=$("input #startDateD").attr("value");
 	startDateY=$("input #startDateY").attr("value");
 }
+
 function classify(){
 $("ul li").addClass("notReadI").addClass("notReadDate").addClass("notNumdDate");
 }
 function retrieve(){
-	stringd=$("ul li.notReadI:first").text();$("ul li.notReadI:first").addClass("readI").removeClass("notReadI");linum=linum+1;
+	stringd=$("ul li.notReadI:first").text();
+	$("ul li.notReadI:first").addClass("readI").removeClass("notReadI");
 }
 function retrieval(){
+	linum=0;
 	while (linum!=number)
 	{
 	retrieve();
 	impact();
+	linum=linum+1;
 	}
 }
+
 function monthBreak(){
 		if (numing.search("January")!=-1)
 			{numing=numing.replace("January","m01");}
@@ -79,6 +142,7 @@ function dateBreak(){
 		linum=linum+1;
 	}
 }
+
 function findWeekDay(){
 	var d=new Date();
 	d.setDate(startDateD)
@@ -103,6 +167,7 @@ function advance(){
 	advanceMonth();
 	advanceYear();
 }
+
 function advanceMonth(){
 	//January, March, May, July, August, October, December
 	//April, June, September, November
@@ -172,6 +237,7 @@ function advanceMonth(){
 		{startDateD=1; startDateM=13;}
 	}
 }
+
 function advanceYear(){
 	if (startDateM==13)
 		{startDateM=1; startDateYear=startDateYear+1;}
@@ -182,6 +248,7 @@ function fuseDateA(){
 	else
 		{fusionStart="m0"+startDateM+" "+startDateD+" "+startDateY;}
 }
+
 function fuseDateB(){
 	fusionImpact=dateMonth+" "+dateDay+" "+dateYear;
 }
@@ -221,6 +288,7 @@ function dateFind(){
 		}
 	
 	}
+
 function impact(){
 	var impacttype=0;
 	if (stringd.search("Employee Planning")!=-1)
@@ -249,11 +317,25 @@ function impact(){
 		{impacttype=13;}
 	impactstring=impactstring + impacttype;
 }
+
+function hourTicker(){
+	
+}
+
 $(document).ready(function(){
+	getNum();
 	classify();
 	retrieval();
 	dateBreak();
 });
-function test(){
+
+function run()
+{	
+	
+	entryForm();
+	findWeekDay();
+	algorithm();
+	advance();
 	
 }
+
