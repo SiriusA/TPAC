@@ -7,11 +7,11 @@ var impactstring="";
 var numing;
 var dateData="";
 //The next four variables will eventually take data from the form.
-var startDateM=08;
-var startDateD=22;
-var startDateY=2011;
+var startDateM;
+var startDateD;
+var startDateY;
 var hoursReq;
-
+var number;
 var startDay;
 var dateYear;
 var dateDay;
@@ -22,15 +22,20 @@ var found=0;
 var foundExport=0;
 function entryForm(){
 	//this parses the form data. RUN THIS FIRST
+	number=$("ul li#number").text();
+	number=parseInt(number)+2;
+	startDateM=$("input #startDateM").attr("value");
+	startDateD=$("input #startDateD").attr("value");
+	startDateY=$("input #startDateY").attr("value");
 }
 function classify(){
-	$("ul li").addClass("notReadI").addClass("notReadDate").addClass("notNumdDate");
+$("ul li").addClass("notReadI").addClass("notReadDate").addClass("notNumdDate");
 }
 function retrieve(){
 	stringd=$("ul li.notReadI:first").text();$("ul li.notReadI:first").addClass("readI").removeClass("notReadI");linum=linum+1;
 }
 function retrieval(){
-	while (linum!=65)
+	while (linum!=number)
 	{
 	retrieve();
 	impact();
@@ -91,8 +96,8 @@ function advance(){
 	{found=5;}
 	if (startDay==6)
 	{found=5;}
-	alert(found);
 	foundExport=parseInt(found);
+	checkFound();
 	startDay=startDay+1;
 	startDateD=startDateD+1;
 	advanceMonth();
@@ -248,10 +253,7 @@ $(document).ready(function(){
 	classify();
 	retrieval();
 	dateBreak();
-	findWeekDay();
 });
 function test(){
-	findWeekDay();
-	advance();
-	algorithm();
+	
 }
