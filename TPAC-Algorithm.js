@@ -1,6 +1,5 @@
 var hoursRequired=600;
 var hoursDay=6;
-var totalDays=hoursRequired/hoursDay;
 
 function getValues(){
 	var hoursRequired=document.getElementById("hoursRequired");
@@ -9,8 +8,10 @@ function getValues(){
 
 function algorithm() {
 	getValues();
-	totalDays=hoursRequired/totalDays;
+	totalDays=hoursRequired/hoursDay;
 	alert(totalDays);
+}
+function checkFound() {
 	if (foundExport == 1)
 	{
 		totalDays=totalDays +1;
@@ -26,8 +27,11 @@ function algorithm() {
 	alert(totalDays);
 }
 
-
-
-$(document).ready(function(){
+function run()
+{
+	entryForm();
+	findWeekDay();
 	algorithm();
-});
+	advance();
+	
+}

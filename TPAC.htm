@@ -1,12 +1,12 @@
 <html><head>
 		<title>Skool Daze</title>
-		<link type="text/css" rel="stylesheet" src="">
+		<link type="text/css" rel="stylesheet" href="TPAC.css">
 		<script type="text/javascript" src="jquery-1.6.4.js"></script>
 		<script type="text/javascript" src="TPAC-Retrieval.js"></script>
 		<script type="text/javascript" src="TPAC-Algorithm.js"></script>
 	</head>
 	<body>
-	<div style="opacity:0;height:0;width:0;overflow:hidden;" class="A"><ul><li>First Quarter
+	<div style="visibility:hidden;height:0;"><ul><li>First Quarter
 </li><li>
 Monday, August 15, 2011 Employee Planning - 1
 </li><li>
@@ -137,13 +137,32 @@ Thursday, June 07, 2012 Last Day of School
 Friday, June 08, 2012 Employee Planning - 10
 </li><li>
 Wednesday, June 27, 2012 Report Cards Issued for Fourth Quarter</li><li id='Number'>65</li></ul></div>
-	<h1>Welcome to the McFatter Technical Program!</h1>
+<center><h1>Welcome to the McFatter Technical Program!</h1>
+<br>
+<br>
+<div id="page">
 	<h2>With this tool, you can determine your last day with the hours you must complete.</h2>
 	<p>Type in the hours you serve a day, the total hours you must complete, and the starting date and we will find your last day!</p>
-	Starting Date:<input type="text" id="startDate"><br>
-	Required Hours:<input type="text" id="hoursRequired"><br>
-	Hours per Day:<input type="text" id="hoursDay"> <br>
-	<input type="button" id="Calculate" value="Find your last day!">
+	<table>
+	<tr>
+	<td>Starting Month:</td>
+	<td><input type="text" id="startDateM"></td>
+	<td>Day:</td>
+	<td><input type="text" id="startDateD"></td>
+	<td>Year:</td>
+	<td><input type="text" id="startDateY"></td>
+	</tr>
+	<tr>
+	<td>Required Hours:</td>
+	<td><input type="text" id="hoursRequired"></td>
+	</tr>
+	<tr>
+	<td>Hours per Day:</td>
+	<td><input type="text" id="hoursDay"> </td>
+	</tr>
+	</table>
+	<input type="button" id="Calculate" value="Find your last day!" onclick="run()">
 	<input type="button" id="Move" value="Testing:Advance" onclick="test()">
-	
-</body></html>
+</center></div>
+</body>
+</html>
