@@ -8,11 +8,14 @@ var stringd="0";
 var impactstring="";
 var numing;
 var dateData="";
+var anImpact=0;
 //The next four variables will eventually take data from the form.
+var illNumD=0;
 var startDateM;
 var startDateD;
 var startDateY;
-var hoursReq;
+var hoursRemaining;
+
 var number;
 var startDay;
 var dateYear;
@@ -22,56 +25,86 @@ var fusionStart;
 var fusionImpact;
 var found=0;
 var foundExport=0;
-//How the hell this is coded:
+//Index
 /*
 Functions:
+docready
+{
 getNum()
-getValues()
-algorithm()
-checkFound()
-entryForm()
 classify()
-retrieve()
 retrieval()
-monthBreak()
+	{
+	retrieve()
+	impact()
+	}
 dateBreak()
-findWeekDay()
-advance()
-advanceMonth()
-advanceYear()
-fuseDateA()
-fuseDateB()
-dateFind()
-impact()
-hourTicker()
+	{
+	monthBreak()
+	}
+}
 run()
+{
+entryForm()
+findWeekDay()
+algorithm()
+	{
+	getValues()
+	}
+hourTicker()
+	{
+		advance()
+		{
+		dateFind()
+			{
+			fuseDateA()
+			fuseDateB()
+			}
+		advanceMonth()
+		advanceYear()
+		checkFound()
+		}
+	}
+}
 */
 //Algorithm
 
 function getValues(){
-	var hoursRequired=$("input #hoursRequired").attr("value");
-	var hoursDay=$("input #hoursDay").attr("value");
+	var hoursRequired=$("#hoursRequired").val();
+	var hoursDay=$("#hoursDay").val();
+	hoursRequired=parseInt(hoursRequired);
+	hoursDay=parseInt(hoursDay);
+	if (isNaN(hoursRequired)==true)
+	{	illNumD=1;}
+	if (isNaN(hoursDay)==true)
+	{	illNumD=1;}
 }
 
 function algorithm() {
 	getValues();
+	if (illNumD==1)
+	{	alert("Error: One of the numbers input was not a number.");return;}
 	totalDays=hoursRequired/hoursDay;
-	alert(totalDays);
 }
 function checkFound() {
 	if (foundExport == 1)
 	{
 		totalDays=totalDays +1;
+		anImpact=1;
 	}
 	if (foundExport == 2)
 	{
 		totalDays=totalDays +1;
+		anImpact=1;
 	}
 	if (foundExport == 3)
 	{
 		totalDays=totalDays +1;
-	} 
-	alert(totalDays);
+		anImpact=1;
+	}
+	if (foundExport == 5)
+	{	
+		totalDays=totalDays +1;
+	}
 }
 
 //Retrieval Program
@@ -82,9 +115,18 @@ function getNum(){
 
 function entryForm(){
 	//this parses the form data. RUN THIS FIRST
-	startDateM=$("input #startDateM").attr("value");
-	startDateD=$("input #startDateD").attr("value");
-	startDateY=$("input #startDateY").attr("value");
+	startDateM=$("#startDateM").val();
+	startDateD=$("#startDateD").val();
+	startDateY=$("#startDateY").val();
+	startDateM=parseInt(startDateM);
+	startDateD=parseInt(startDateD);
+	startDateY=parseInt(startDateY);
+	if (isNaN(startDateM)==true)
+	{	illNumD=1;}
+	if (isNaN(startDateD)==true)
+	{	illNumD=1;}
+	if (isNaN(startDateY)==true)
+	{	illNumD=1;}
 }
 
 function classify(){
@@ -179,7 +221,7 @@ function advanceMonth(){
 	}
 	if (startDateM==2)
 	{	
-		if (startDateYear%4==0)
+		if (startDateY%4==0)
 		{	if (startDateD==30)
 			{startDateD=1; startDateM=3;}
 		}
@@ -240,7 +282,7 @@ function advanceMonth(){
 
 function advanceYear(){
 	if (startDateM==13)
-		{startDateM=1; startDateYear=startDateYear+1;}
+		{startDateM=1; startDateY=startDateY+1;}
 }
 function fuseDateA(){
 	if ((startDateM.toString()).length=1)
@@ -319,7 +361,16 @@ function impact(){
 }
 
 function hourTicker(){
-	
+	hoursRemaining=hoursRequired;
+	while (hoursRemaining >0)
+	{
+		advance();
+		if (anImpact=1)
+		{	hoursRemaining=hoursRemaining -0;}
+		if (anImpact=0)
+		{	hoursRemaining=hoursRemaining - hoursDay;}
+		anImpact=0
+	}
 }
 
 $(document).ready(function(){
@@ -333,9 +384,13 @@ function run()
 {	
 	
 	entryForm();
+	if (illNumD==1)
+	{	alert("Error: One of the numbers input was not a number.");return;}
 	findWeekDay();
 	algorithm();
-	advance();
+	
+	hourTicker();
+	alert(totalDays);
 	
 }
 
