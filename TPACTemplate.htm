@@ -1,15 +1,15 @@
-<html><head>
-		<title>Skool Daze</title>
-		<link type="text/css" rel="stylesheet" href="TPAC.css">
-		<script type="text/javascript" src="jquery-1.6.4.js"></script>
-		<script type="text/javascript" src="TPAC-Retrieval.js"></script>
-		<script type="text/javascript" src="TPAC-Algorithm.js"></script>
-	</head>
+<html>
+<head>
+	<title>Skool Daze</title>
+	<link type="text/css" rel="stylesheet" href="TPAC.css"/>
+	<script type="text/javascript" src="jquery-1.6.4.js"></script>
+	<script type="text/javascript" src="TPAC-RetAlgorithm.js"></script>
+</head>
 	<body>
-	<div style="visibility:hidden;height:0;">`</div>
+	<div style="visibility:hidden;height:0">`</div>
 <center><h1>Welcome to the McFatter Technical Program!</h1>
-<br>
-<br>
+</br>
+</br>
 <div id="page">
 	<h2>With this tool, you can determine your last day with the hours you must complete.</h2>
 	<p>Type in the hours you serve a day, the total hours you must complete, and the starting date and we will find your last day!</p>
@@ -27,12 +27,15 @@
 	<td><input type="text" id="hoursRequired"></td>
 	</tr>
 	<tr>
+	<td>Hours Completed:</td>
+	<td><input type="text" id="hoursCompleted"></td>
+	</tr>
+	<tr>
 	<td>Hours per Day:</td>
 	<td><input type="text" id="hoursDay"> </td>
 	</tr>
 	</table>
 	<input type="button" id="Calculate" value="Find your last day!" onclick="run()">
-	<input type="button" id="Move" value="Testing:Advance" onclick="test()">
 </center></div>
 </body>
 </html>

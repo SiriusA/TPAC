@@ -14,6 +14,7 @@ var illNumD=0;
 var startDateM;
 var startDateD;
 var startDateY;
+var hoursCompleted;
 var hoursRemaining;
 
 var number;
@@ -69,13 +70,17 @@ hourTicker()
 //Algorithm
 
 function getValues(){
-	var hoursRequired=$("#hoursRequired").val();
-	var hoursDay=$("#hoursDay").val();
+	hoursRequired=$("#hoursRequired").val();
+	hoursDay=$("#hoursDay").val();
+	hoursCompleted=$("#hoursCompleted").val()
 	hoursRequired=parseInt(hoursRequired);
 	hoursDay=parseInt(hoursDay);
+	hoursCompleted=parseInt(hoursCompleted);
 	if (isNaN(hoursRequired)==true)
 	{	illNumD=1;}
 	if (isNaN(hoursDay)==true)
+	{	illNumD=1;}
+	if (isNaN(hoursCompleted)==true)
 	{	illNumD=1;}
 }
 
@@ -104,6 +109,7 @@ function checkFound() {
 	if (foundExport == 5)
 	{	
 		totalDays=totalDays +1;
+		anImpact=1;
 	}
 }
 
@@ -191,6 +197,8 @@ function findWeekDay(){
 	d.setFullYear(startDateY)
 	d.setMonth(startDateM-1);
 	startDay=d.getDay();
+	startDay=parseInt(startDay);
+	console.log("original startDay " + startDay);
 	if (startDay==0)
 	{alert("No School on Sunday!");}
 	if (startDay==6)
@@ -205,6 +213,9 @@ function advance(){
 	foundExport=parseInt(found);
 	checkFound();
 	startDay=startDay+1;
+	console.log("advance's startDay " + startDay);
+	if (startDay > 6)
+		{startDay=0;}
 	startDateD=startDateD+1;
 	advanceMonth();
 	advanceYear();
@@ -361,16 +372,36 @@ function impact(){
 }
 
 function hourTicker(){
-	hoursRemaining=hoursRequired;
+	hoursRemaining=hoursRequired - hoursCompleted;
+	var daycount=0;
 	while (hoursRemaining >0)
 	{
 		advance();
-		if (anImpact=1)
-		{	hoursRemaining=hoursRemaining -0;}
-		if (anImpact=0)
+		if (anImpact==1)
+		{	hoursRemaining=hoursRemaining - 0;}
+		if (anImpact==0)
 		{	hoursRemaining=hoursRemaining - hoursDay;}
-		anImpact=0
+		anImpact=0;
+		daycount=daycount+1;
+		console.log(startDay);
 	}
+	if (startDay==6)
+	{
+		advance();
+		advance();
+		console.log("Trying to end on a Saturday, huh?");
+	}
+	if (startDay==0)
+	{
+		advance();
+		console.log("Trying to end on a Sunday, huh?");
+	}
+	alert(daycount);
+}
+
+function truncateYear(){
+	startDateY=startDateY.toString();
+	startDateY=startDateY.substr(2);
 }
 
 $(document).ready(function(){
@@ -388,9 +419,9 @@ function run()
 	{	alert("Error: One of the numbers input was not a number.");return;}
 	findWeekDay();
 	algorithm();
-	
 	hourTicker();
-	alert(totalDays);
+	truncateYear();
+	alert(startDateM + "/" + startDateD + "/" + startDateY);
 	
 }
 
