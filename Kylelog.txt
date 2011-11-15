@@ -1,0 +1,5 @@
+Logs
+
+Kyle Picinich
+
+11/15/11|TPAC|Establish XML - JavaScript functionality|3:20pm-4:00|Could not fix issue entirely, but made a breakthrough!

@@ -8,12 +8,11 @@
 	<id>
 
 -->
-<!--
+
 <program id="B0780000" name="Network Support Services" totalhours="1050" dayhours="6">
 	<course id="OTA00407" name="Information Technology Assistant" totalhours="150" OCP="A">asdf</course>
 
 </program>
--->
 
-<program>
-	<id>B0780000</id>
+
+

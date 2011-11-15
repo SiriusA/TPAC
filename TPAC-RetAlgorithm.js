@@ -27,7 +27,6 @@ var fusionImpact;
 var found=0;
 var foundExport=0;
 //Xml variables
-var JX;
 var courseId="OTA00407";
 //Index
 /*
@@ -87,11 +86,13 @@ else
   }
 
 function retrieveCourseD(){
-$("p.workspace").append("xmlDoc.getElementById(\"");
-$("p.workspace").append(courseId);
-$("p.workspace").append("\");");
-var searchedData=xmlDoc.getElementsByTagName("course")[0].nodeValue;
+//$("p.workspace").append("xmlDoc.getElementById(\"");
+//$("p.workspace").append(courseId);
+//$("p.workspace").append("\");");
+var searchedData=new Array;
+searchedData=xmlDoc.getElementsByTagName("program")[0].attributes[0].textContent;
 alert(searchedData.toString());
+console.log(searchedData.toString());
 var psdInstruct=$("p.workspace").html();
 //var cake=eval(psdInstruct);
 //console.log(cake);
