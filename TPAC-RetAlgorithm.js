@@ -26,6 +26,9 @@ var fusionStart;
 var fusionImpact;
 var found=0;
 var foundExport=0;
+//Xml variables
+var JX;
+var courseId="OTA00407";
 //Index
 /*
 Functions:
@@ -67,6 +70,38 @@ hourTicker()
 	}
 }
 */
+//Load Programs.xml
+function loadXml(){
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  xmlhttp.open("GET","programs.xml", false);
+  xmlhttp.send();
+  xmlDoc=xmlhttp.responseXML;
+  
+  }
+
+function retrieveCourseD(){
+$("p.workspace").append("xmlDoc.getElementById(\"");
+$("p.workspace").append(courseId);
+$("p.workspace").append("\");");
+var searchedData=xmlDoc.getElementsByTagName("course")[0].nodeValue;
+alert(searchedData.toString());
+var psdInstruct=$("p.workspace").html();
+//var cake=eval(psdInstruct);
+//console.log(cake);
+}
+
+function test(){
+loadXml();
+retrieveCourseD();
+}
+
 //Algorithm
 
 function getValues(){
