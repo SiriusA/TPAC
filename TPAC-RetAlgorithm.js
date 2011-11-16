@@ -27,7 +27,10 @@ var fusionImpact;
 var found=0;
 var foundExport=0;
 //Xml variables
+var programId="B0780000";
 var courseId="OTA00407";
+var programDataArray=new Array;
+var courseDataArray=new Array;
 //Index
 /*
 Functions:
@@ -85,22 +88,55 @@ else
   
   }
 
-function retrieveCourseD(){
-//$("p.workspace").append("xmlDoc.getElementById(\"");
-//$("p.workspace").append(courseId);
-//$("p.workspace").append("\");");
-var searchedData=new Array;
-searchedData=xmlDoc.getElementsByTagName("program")[0].attributes[0].textContent;
-alert(searchedData.toString());
-console.log(searchedData.toString());
-var psdInstruct=$("p.workspace").html();
-//var cake=eval(psdInstruct);
-//console.log(cake);
+function retrieveCourseDX(){
+var searchIndex;
+var idFound=0;
+var xIA=0; //The program.
+var xIB=0; //The course.
+var xIC=0; //Used to return data.
+//output is courseDataArray[]
+//Find the Program
+do
+{
+searchIndex=xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
+if(searchIndex==programId)
+{	
+	alert("Found!");
+	idFound=1;
+	break;
+}
+
+xIA=xIA+1;
+}while (idFound==0);
+if(idFound==1)
+{
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent);
+}
+idFound=0;
+do
+{
+searchIndex=xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
+if(searchIndex==courseId)
+{
+	alert("Also Found!");
+	idFound=1;
+	break;
+}
+xIB=xIB+1;
+}while(idFound==0);
+if(idFound==1)
+{
+	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
+	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent);
+	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent);
+}
 }
 
 function test(){
 loadXml();
-retrieveCourseD();
+retrieveCourseDX();
 }
 
 //Algorithm

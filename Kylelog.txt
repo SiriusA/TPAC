@@ -2,4 +2,5 @@ Logs
 
 Kyle Picinich
 
-11/15/11|TPAC|Establish XML - JavaScript functionality|3:20pm-4:00|Could not fix issue entirely, but made a breakthrough!
+11/15/11|TPAC|Establish XML - JavaScript functionality|3:20pm-4:00pm|Could not fix issue entirely, but made a breakthrough!
+11/15/11|TPAC|Establish XML - JavaScript functionality|4:40pm-5:40pm|Fixed issue entirely. Arrays are complete and ready for referencing.

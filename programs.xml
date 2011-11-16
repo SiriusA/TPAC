@@ -3,16 +3,14 @@
 <category name="category name">
 <program id="program id" name="program name" totalhours="number of hours" dayhours="hours per day">
 <course id="course id" name="course name" totalhours="number of hours" OCP="OCP letter"/>
-
-<program>
-	<id>
-
 -->
-
+<index>
+<category>
 <program id="B0780000" name="Network Support Services" totalhours="1050" dayhours="6">
-	<course id="OTA00407" name="Information Technology Assistant" totalhours="150" OCP="A">asdf</course>
-
+	<course id="OTA00407" name="Information Technology Assistant" totalhours="150" OCP="A"/>
+	
 </program>
-
+</category>
+</index>
 
 
