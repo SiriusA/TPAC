@@ -8,7 +8,12 @@
 <category>
 <program id="B0780000" name="Network Support Services" totalhours="1050" dayhours="6">
 	<course id="OTA00407" name="Information Technology Assistant" totalhours="150" OCP="A"/>
-	
+	<course id="EEV05040" name="Computer Support Assistant" totalhours="150" OCP="B"/>
+	<course id="CTS00220" name="Network Support Help Desk Assistant" totalhours="150" OCP="C"/>
+	<course id="CTS00230" name="Network Support Administrator" totalhours="150" OCP="D"/>
+	<course id="CTS00240" name="Senior Network Administrator" totalhours="150" OCP="E"/>
+	<course id="CTS00290" name="Wireless Network Administrator" totalhours="150" OCP="F"/>
+	<course id="EEV03170" name="Data Communications Analyst" totalhours="150" OCP="G"/>
 </program>
 </category>
 </index>
