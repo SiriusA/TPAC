@@ -94,14 +94,14 @@ var idFound=0;
 var xIA=0; //The program.
 var xIB=0; //The course.
 var xIC=0; //Used to return data.
-//output is courseDataArray[]
+//output: programDataArray[]
+//output: courseDataArray[]
 //Find the Program
 do
 {
 searchIndex=xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
 if(searchIndex==programId)
 {	
-	alert("Found!");
 	idFound=1;
 	break;
 }
@@ -110,6 +110,7 @@ xIA=xIA+1;
 }while (idFound==0);
 if(idFound==1)
 {
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
 	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
 	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent);
 	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent);
@@ -120,7 +121,6 @@ do
 searchIndex=xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
 if(searchIndex==courseId)
 {
-	alert("Also Found!");
 	idFound=1;
 	break;
 }
@@ -128,6 +128,7 @@ xIB=xIB+1;
 }while(idFound==0);
 if(idFound==1)
 {
+	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
 	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
 	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent);
 	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent);
