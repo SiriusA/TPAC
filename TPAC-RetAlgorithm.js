@@ -135,6 +135,8 @@ if(idFound==1)
 }
 }
 
+
+
 function test(){
 loadXml();
 retrieveCourseDX();
