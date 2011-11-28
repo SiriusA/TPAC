@@ -29,7 +29,7 @@ var foundExport=0;
 //Xml variables
 var programId="B0780000";
 var courseId="OTA00407";
-var programDataArray=new Array;
+var programDataArray=new Array; //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
 var courseDataArray=new Array;
 //Index
 /*
@@ -139,6 +139,9 @@ function test(){
 loadXml();
 retrieveCourseDX();
 }
+//ExpandableTable
+
+//Goes Here.
 
 //Algorithm
 
