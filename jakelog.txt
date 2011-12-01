@@ -3,3 +3,4 @@ Logs
 Jake Eason
 
 11/17/11|TPAC|Update programs.xml and create table in TPACTemplate.htm|2:01PM-2:37PM|
+11/28/11|TPAC|Update TPAC-RetAlgorithm|1:34PM-3:30PM|

@@ -29,8 +29,9 @@ var foundExport=0;
 //Xml variables
 var programId="B0780000";
 var courseId="OTA00407";
-var programDataArray=new Array; //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
-var courseDataArray=new Array;
+var programDataArray=new Array; 
+var courseDataArray=new Array; //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
+
 //Index
 /*
 Functions:
@@ -135,11 +136,19 @@ if(idFound==1)
 }
 }
 
-
+function writeData() {
+//	document.getElementById("tr1c2").innerHTML=programDataArray[1];
+//	document.getElementById("tr1c3").innerHTML=programDataArray[2];
+//	document.getElementById("tr1c4").innerHTML=programDataArray[3];
+$("td.tr1c1").text(courseDataArray[1]);
+$("td.tr1c2").text(courseDataArray[2]);
+$("td.tr1c3").text(courseDataArray[3]);
+}
 
 function test(){
 loadXml();
 retrieveCourseDX();
+writeData();
 }
 //ExpandableTable
 
