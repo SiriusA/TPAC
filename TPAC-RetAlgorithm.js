@@ -16,7 +16,8 @@ var startDateD;
 var startDateY;
 var hoursCompleted;
 var hoursRemaining;
-
+var tableRows = 7;
+var row = 0;
 var number;
 var startDay;
 var dateYear;
@@ -26,11 +27,15 @@ var fusionStart;
 var fusionImpact;
 var found=0;
 var foundExport=0;
+var tableOutput = new Array();
 //Xml variables
-var programId="B0780000";
-var courseId="OTA00407";
-var programDataArray=new Array; 
-var courseDataArray=new Array; //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
+var programId= "B0780000";
+var courseId= new Array();
+var programDataArray=new Array(); 
+var courseDataArray=new Array();
+ //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
+
+
 
 //Index
 /*
@@ -73,6 +78,8 @@ hourTicker()
 	}
 }
 */
+
+
 //Load Programs.xml
 function loadXml(){
 if (window.XMLHttpRequest)
@@ -100,10 +107,20 @@ var xIC=0; //Used to return data.
 //Find the Program
 do
 {
+
 searchIndex=xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
+
+
 if(searchIndex==programId)
 {	
 	idFound=1;
+	break;
+}
+if(searchIndex=="END")
+{
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
+	idFound = -1;
 	break;
 }
 
@@ -116,46 +133,101 @@ if(idFound==1)
 	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent);
 	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent);
 }
+do
+{
 idFound=0;
 do
 {
+
+
 searchIndex=xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
-if(searchIndex==courseId)
+
+if(searchIndex==courseId[row])
 {
 	idFound=1;
+	break;
+}
+if(searchIndex == "END")
+{
+	idFound = -1;
 	break;
 }
 xIB=xIB+1;
 }while(idFound==0);
 if(idFound==1)
 {
-	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
-	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
-	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent);
-	courseDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent);
 }
+if(idFound == -1)
+{
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
+}
+writeData();
+row = row + 1;
+idFound = 0;
+}while(row < tableRows);
+xIA = 0;
+xIB = 0;
+row = 0;
 }
 
 function writeData() {
 //	document.getElementById("tr1c2").innerHTML=programDataArray[1];
 //	document.getElementById("tr1c3").innerHTML=programDataArray[2];
 //	document.getElementById("tr1c4").innerHTML=programDataArray[3];
-$("td.tr1c1").text(courseDataArray[1]);
-$("td.tr1c2").text(courseDataArray[2]);
-$("td.tr1c3").text(courseDataArray[3]);
+var c = 0;
+do
+{
+eval(tableOutput[c]);
+c = c + 1;
+}while(c < tableRows);
+}
+
+function setArray() {
+var c = 0;
+do
+{
+	courseDataArray[c]=new Array();
+	c = c+1;
+}while(c < tableRows);
+}
+
+function tagIDs() {
+	$("input.courseID").addClass("Loading");
+}
+
+function loadIDs() {
+var loadID;
+var c = 1;
+do
+{
+	loadID = $("input.Loading:first").val();
+	$("input.Loading:first").removeClass("Loading");
+	courseId.push(loadID);
+	c = c+1;
+}while(c < tableRows);
 }
 
 function test(){
+tableOutputSetup();
+setArray();
+tagIDs();
 loadXml();
+loadIDs();
+
 retrieveCourseDX();
-writeData();
+
 }
 //ExpandableTable
 
 //Goes Here.
 
 //Algorithm
-
+/*
 function getValues(){
 	hoursRequired=$("#hoursRequired").val();
 	hoursDay=$("#hoursDay").val();
@@ -512,3 +584,4 @@ function run()
 	
 }
 
+*/
