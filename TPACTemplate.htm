@@ -14,7 +14,7 @@
 <div id="page">
 	<h2>With this tool, you can determine your last day with the hours you must complete.</h2>
 	<p>Type in the hours you serve a day, the total hours you must complete, and the starting date and we will find your last day!</p>
-	<table>
+	<table class="remove">
 	<tr>
 	<td>Starting Month:</td>
 	<td><input type="text" id="startDateM"></td>
@@ -36,13 +36,31 @@
 	<td><input type="text" id="hoursDay"> </td>
 	</tr>
 	</table>
-	<input type="button" id="Calculate" value="Find your last day!" onclick="run()">
-	<input type="button" id="Calculate2" value="Find your last day!" onclick="test()">
+		<input type="button" id="Calculate" value="Find your last day!" onclick="run()">
+		<input type="button" id="Calculate2" value="Find your last day!" onclick="test()">
+		<input type="button" id="deflate" value="Reduce the table size?" onclick="deflateTable()">
+		<input type="button" id="inflate" value="Increase table size?" onclick="expandTable()">
 	</br>
-	<input type="text" id=programID"
-	<div class="autumnTemplate">
-	<table>	
+	<table class="program">
 		<tr>
+			<td class="pr1"><input type="text" id="programID"/></td>
+		</tr>
+		<tr>
+			<td class="pr2"></td>
+		</tr>
+		<tr>
+			<td class="pr3"></td>
+		</tr>
+		<tr>
+			<td class="pr4"></td>
+		</tr>
+		<tr>
+			<td class="pr5"></td>
+		</tr>
+	</table>
+	<div class="autumnTemplate">
+	<table class="table1">	
+		<tr class="key">
 		<td>Id</td>
 		<td>Course</td>
 		<td>OCP</td>
@@ -52,7 +70,7 @@
 		<td>End Date</td>
 		<td>Comments</td>
 		</tr>
-		<tr>
+		<tr class="row1">
 		<td><input type="text" class="courseID" id="Course1Id" value="OTA00407"/></td>
 		<td class="tr1c1"></td>
 		<td class="tr1c2"></td>
@@ -62,7 +80,7 @@
 		<td class="tr1c6"></td>
 		<td class="tr1c7"></td>
 		</tr>
-		<tr>
+		<tr class="row2">
 		<td><input type="text" class="courseID" id="Course2Id"/></td>
 		<td class="tr2c1"></td>
 		<td class="tr2c2"></td>
@@ -72,7 +90,7 @@
 		<td class="tr2c6"></td>
 		<td class="tr2c7"></td>
 		</tr>
-		<tr>
+		<tr class="row3">
 		<td><input type="text" class="courseID" id="Course3Id"/></td>
 		<td class="tr3c1"></td>
 		<td class="tr3c2"></td>
@@ -82,7 +100,7 @@
 		<td class="tr3c6"></td>
 		<td class="tr3c7"></td>
 		</tr>
-		<tr>
+		<tr class="row4">
 		<td><input type="text" class="courseID" id="Course4Id"/></td>
 		<td class="tr4c1"></td>
 		<td class="tr4c2"></td>
@@ -92,7 +110,7 @@
 		<td class="tr4c6"></td>
 		<td class="tr4c7"></td>
 		</tr>
-		<tr>
+		<tr class="row5">
 		<td><input type="text" class="courseID" id="Course5Id"/></td>
 		<td class="tr5c1"></td>
 		<td class="tr5c2"></td>
@@ -102,7 +120,7 @@
 		<td class="tr5c6"></td>
 		<td class="tr5c7"></td>
 		</tr>
-		<tr>
+		<tr class="row6">
 		<td><input type="text" class="courseID" id="Course6Id"/></td>
 		<td class="tr6c1"></td>
 		<td class="tr6c2"></td>
@@ -112,7 +130,7 @@
 		<td class="tr6c6"></td>
 		<td class="tr6c7"></td>
 		</tr>
-		<tr>
+		<tr class="row7">
 		<td><input type="text" class="courseID" id="Course7Id"/></td>
 		<td class="tr7c1"></td>
 		<td class="tr7c2"></td>
@@ -122,7 +140,7 @@
 		<td class="tr7c6"></td>
 		<td class="tr7c7"></td>
 		</tr>
-		<tr>
+		<tr class="row8">
 		<td><input type="text" class="courseID" id="Course8Id"/></td>
 		<td class="tr8c1"></td>
 		<td class="tr8c2"></td>
@@ -132,7 +150,7 @@
 		<td class="tr8c6"></td>
 		<td class="tr8c7"></td>
 		</tr>
-		<tr>
+		<tr class="row9">
 		<td><input type="text" class="courseID" id="Course9Id"/></td>
 		<td class="tr9c1"></td>
 		<td class="tr9c2"></td>
@@ -142,17 +160,7 @@
 		<td class="tr9c6"></td>
 		<td class="tr9c7"></td>
 		</tr>
-		<tr>
-		<td><input type="text" class="courseID" id="Course10Id"/></td>
-		<td class="tr7c1"></td>
-		<td class="tr7c2"></td>
-		<td class="tr7c3"></td>
-		<td class="tr7c4"></td>
-		<td class="tr7c5"></td>
-		<td class="tr7c6"></td>
-		<td class="tr7c7"></td>
-		</tr>
-		<tr>
+		<tr class="row10">
 		<td><input type="text" class="courseID" id="Course10Id"/></td>
 		<td class="tr10c1"></td>
 		<td class="tr10c2"></td>
@@ -162,7 +170,7 @@
 		<td class="tr10c6"></td>
 		<td class="tr10c7"></td>
 		</tr>
-		<tr>
+		<tr class="row11">
 		<td><input type="text" class="courseID" id="Course11Id"/></td>
 		<td class="tr11c1"></td>
 		<td class="tr11c2"></td>
@@ -172,7 +180,7 @@
 		<td class="tr11c6"></td>
 		<td class="tr11c7"></td>
 		</tr>
-		<tr>
+		<tr class="row12">
 		<td><input type="text" class="courseID" id="Course12Id"/></td>
 		<td class="tr12c1"></td>
 		<td class="tr12c2"></td>
@@ -182,7 +190,7 @@
 		<td class="tr12c6"></td>
 		<td class="tr12c7"></td>
 		</tr>
-		<tr>
+		<tr class="row13">
 		<td><input type="text" class="courseID" id="Course13Id"/></td>
 		<td class="tr13c1"></td>
 		<td class="tr13c2"></td>
@@ -192,7 +200,7 @@
 		<td class="tr13c6"></td>
 		<td class="tr13c7"></td>
 		</tr>
-		<tr>
+		<tr class="row14">
 		<td><input type="text" class="courseID" id="Course14Id"/></td>
 		<td class="tr14c1"></td>
 		<td class="tr14c2"></td>
@@ -202,7 +210,7 @@
 		<td class="tr14c6"></td>
 		<td class="tr14c7"></td>
 		</tr>
-		<tr>
+		<tr class="row15">
 		<td><input type="text" class="courseID" id="Course15Id"/></td>
 		<td class="tr15c1"></td>
 		<td class="tr15c2"></td>

@@ -1,3 +1,10 @@
+var dTableElem = new Array;
+var tableDeflator = new Array;
+var tableInflator = new Array;
+var currentRows = 14;
+
+
+
 
 function formAddition()
 {
@@ -15,12 +22,57 @@ function formAddition()
 		*/
 		
 }
-
+function deflateTable()
+{
+	if(currentRows > 0)
+	{
+	tableRows = tableRows - 1;
+	}
+	if((currentRows +1) != tableRows) {
+		dTableElem[currentRows] = eval(tableDeflator[currentRows]);
+		if(currentRows > 0)
+		{
+		currentRows = currentRows - 1;
+		}
+	}
+}
 function expandTable()
 {
-//	$("div.autumnTemplate table").append(
+	if(currentRows < 14)
+	{
+	currentRows = currentRows + 1;
+	}
+	$("div.autumnTemplate table").append(dTableElem[currentRows]);
 }
-
+function expTableSetup()
+{
+	tableDeflator[0] = '$(".row1").detach();'
+	tableDeflator[1] = '$(".row2").detach();'
+	tableDeflator[2] = '$(".row3").detach();'
+	tableDeflator[3] = '$(".row4").detach();'
+	tableDeflator[4] = '$(".row5").detach();'
+	tableDeflator[5] = '$(".row6").detach();'
+	tableDeflator[6] = '$(".row7").detach();'
+	tableDeflator[7] = '$(".row8").detach();'
+	tableDeflator[8] = '$(".row9").detach();'
+	tableDeflator[9] = '$(".row10").detach();'
+	tableDeflator[10] = '$(".row11").detach();'
+	tableDeflator[11] = '$(".row12").detach();'
+	tableDeflator[12] = '$(".row13").detach();'
+	tableDeflator[13] = '$(".row14").detach();'
+	tableDeflator[14] = '$(".row15").detach();'
+	if((currentRows +1) != tableRows) {
+		while ((currentRows +1) != tableRows)
+		{
+			dTableElem[currentRows] = eval(tableDeflator[currentRows]);
+			if((currentRows + 1) == tableRows)
+			{
+				break;
+			}
+			currentRows = currentRows - 1;
+		}
+	}
+}
 function tableOutputSetup()
 {
 	tableOutput[0] = '$("td.tr1c1").text(courseDataArray[c][1]);$("td.tr1c2").text(courseDataArray[c][2]);$("td.tr1c3").text(courseDataArray[c][3]);';
@@ -39,3 +91,7 @@ function tableOutputSetup()
 	tableOutput[13] = '$("td.tr14c1").text(courseDataArray[c][1]);$("td.tr14c2").text(courseDataArray[c][2]);$("td.tr14c3").text(courseDataArray[c][3]);';
 	tableOutput[14] = '$("td.tr15c1").text(courseDataArray[c][1]);$("td.tr15c2").text(courseDataArray[c][2]);$("td.tr15c3").text(courseDataArray[c][3]);';
 }
+
+$(document).ready(function(){
+	expTableSetup();
+});
