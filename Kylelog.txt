@@ -2,6 +2,13 @@ Logs
 
 Kyle Picinich
 
+Week 1|Emergency Codes|Finalized Website Design|??|Encountered Issue with Code Blue
+Week 2|Emergency Codes|Worked on Code Blue Double Columns Issue, fixed it.|??|Assigned New Project.
+Week 3|TPAC|Began work on prototype Javascript|More than 10 hours|Finished prototype.
 11/15/11|TPAC|Establish XML - JavaScript functionality|3:20pm-4:00pm|Could not fix issue entirely, but made a breakthrough!
 11/15/11|TPAC|Establish XML - JavaScript functionality|4:40pm-5:40pm|Fixed issue entirely. Arrays are complete and ready for referencing.
 12/2/11|TPAC|Establish multi-row functionality|3:10pm - 4:04pm|Made no progress whatsoever. Page is hanging for some reason.
+12/5/11|TPAC|Finish Table-reading and writing functionality|1:30pm - 4:00pm|Table writes correctly now. Page hang issues still unaddressed.
+12/7/11|TPAC|Finish TableExpansion functionality|1:20pm - 4:00pm|Page hang error is a phantasm. An illusion. Table now expands and contracts. Begun work on changing the computational input/output.
+12/8/11|TPAC|Switch computational input/output|3:20pm - 3:45pm|Program needs its input/output systems completely restructured.
+12/13/11|TPAC|Reconstruct Input/output| 1:30pm - 4:04pm|Made progress with the input/output system.

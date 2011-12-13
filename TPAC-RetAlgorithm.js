@@ -34,6 +34,7 @@ var programId= "B0780000";
 var courseId= new Array();
 var programDataArray=new Array(); 
 var courseDataArray=new Array();
+var daycount;
  //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
 
 
@@ -97,96 +98,8 @@ else
   
   }
 
-function retrieveCourseDX(){
-var searchIndex;
-var idFound=0;
-var xIA=0; //The program.
-var xIB=0; //The course.
-var xIC=0; //Used to return data.
-//output: programDataArray[]
-//output: courseDataArray[]
-//Find the Program
-do
-{
-
-searchIndex=xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
 
 
-if(searchIndex==programId)
-{	
-	idFound=1;
-	break;
-}
-if(searchIndex=="END")
-{
-	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
-	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
-	idFound = -1;
-	break;
-}
-
-xIA=xIA+1;
-}while (idFound==0);
-if(idFound==1)
-{
-	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
-	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
-	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent);
-	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent);
-}
-do
-{
-idFound=0;
-do
-{
-
-
-searchIndex=xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
-
-if(searchIndex==courseId[row])
-{
-	idFound=1;
-	break;
-}
-if(searchIndex == "END")
-{
-	idFound = -1;
-	break;
-}
-xIB=xIB+1;
-}while(idFound==0);
-if(idFound==1)
-{
-	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
-	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
-	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent);
-	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent);
-}
-if(idFound == -1)
-{
-	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
-	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
-}
-writeData();
-row = row + 1;
-idFound = 0;
-}while(row < tableRows);
-xIA = 0;
-xIB = 0;
-row = 0;
-}
-
-function writeData() {
-//	document.getElementById("tr1c2").innerHTML=programDataArray[1];
-//	document.getElementById("tr1c3").innerHTML=programDataArray[2];
-//	document.getElementById("tr1c4").innerHTML=programDataArray[3];
-var c = 0;
-do
-{
-eval(tableOutput[c]);
-c = c + 1;
-}while(c < tableRows);
-}
 
 function setArray() {
 var c = 0;
@@ -214,11 +127,10 @@ do
 }
 
 function test(){
-tableOutputSetup();
-setArray();
-tagIDs();
-loadXml();
-loadIDs();
+
+
+
+
 
 retrieveCourseDX();
 
@@ -231,7 +143,7 @@ retrieveCourseDX();
 
 function getValues(){
 //	hoursRequired=$("#hoursRequired").val();
-//	hoursRequired = courseDataArray[nom][3];
+	hoursRequired = courseDataArray[row][3];
 	hoursDay=$("#hoursDay").val();
 	hoursCompleted=$("#hoursCompleted").val()
 	hoursRequired=parseInt(hoursRequired);
@@ -534,7 +446,7 @@ function impact(){
 
 function hourTicker(){
 	hoursRemaining=hoursRequired - hoursCompleted;
-	var daycount=0;
+	daycount=0;
 	while (hoursRemaining >0)
 	{
 		advance();
@@ -570,26 +482,116 @@ $(document).ready(function(){
 	classify();
 	retrieval();
 	dateBreak();
+	tableOutputSetup();
+	loadXml();
+	setArray();
+	tagIDs();
 });
 
+function writeData() {
+//	document.getElementById("tr1c2").innerHTML=programDataArray[1];
+//	document.getElementById("tr1c3").innerHTML=programDataArray[2];
+//	document.getElementById("tr1c4").innerHTML=programDataArray[3];
+var c = 0;
+do
+{
+eval(tableOutput[c]);
+c = c + 1;
+}while(c < tableRows);
+}
+
+
 function run()
-{	
-	test();
+{
+	loadIDs();
 	do
 	{
-	if(nom == 0)
-	{
 	entryForm();
-	}
+	courseDataArray[row][5] = startDateM + "/" + startDateD + "/" + startDateY;
+	retrieveCourseDX();
+
 	if (illNumD==1)
 	{	alert("Error: One of the numbers input was not a number.");return;}
 	findWeekDay();
 	algorithm();
 	hourTicker();
 	truncateYear();
-	//alert(startDateM + "/" + startDateD + "/" + startDateY);
+	courseDataArray[row][4] = daycount;
 	
-	nom = nom + 1;
-	}while(nom < tableRows);
 	
+	
+	
+	row = row + 1;
+	}while(row < tableRows);
+	//alert(startDateM + "/" + startDateD + "/" + startDateY);	
+}
+
+function retrieveCourseDX(){
+var searchIndex;
+var idFound=0;
+var xIA=0; //The program.
+var xIB=0; //The course.
+var xIC=0; //Used to return data.
+//output: programDataArray[]
+//output: courseDataArray[]
+//Find the Program
+
+do{
+searchIndex=xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
+
+if(searchIndex==programId)
+{	
+	idFound=1;
+	break;
+}
+if(searchIndex=="END")
+{
+	programDataArray[0] = (xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
+	programDataArray[1] = (xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
+	idFound = -1;
+	break;
+}
+
+xIA=xIA+1;
+}while (idFound==0);
+if(idFound==1)
+{
+	programDataArray[0] = xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
+	programDataArray[1] = xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent;
+	programDataArray[2] = xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent;
+	programDataArray[3] = xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent;
+}
+
+idFound=0;
+do
+{
+
+
+searchIndex=xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
+
+if(searchIndex==courseId[row])
+{
+	idFound=1;
+	break;
+}
+if(searchIndex == "END")
+{
+	idFound = -1;
+	break;
+}
+xIB=xIB+1;
+}while(idFound==0);
+if(idFound==1)
+{
+	courseDataArray[row][0] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
+	courseDataArray[row][1] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent;
+	courseDataArray[row][2] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent;
+	courseDataArray[row][3] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent;
+	
+}
+if(idFound == -1)
+{
+	courseDataArray[row][0] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
+	courseDataArray[row][1] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent;
+}
 }
