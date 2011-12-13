@@ -26,6 +26,7 @@ var dateMonth;
 var fusionStart;
 var fusionImpact;
 var found=0;
+var nom = 0;
 var foundExport=0;
 var tableOutput = new Array();
 //Xml variables
@@ -202,7 +203,7 @@ function tagIDs() {
 
 function loadIDs() {
 var loadID;
-var c = 1;
+var c = 0;
 do
 {
 	loadID = $("input.Loading:first").val();
@@ -227,9 +228,10 @@ retrieveCourseDX();
 //Goes Here.
 
 //Algorithm
-/*
+
 function getValues(){
-	hoursRequired=$("#hoursRequired").val();
+//	hoursRequired=$("#hoursRequired").val();
+//	hoursRequired = courseDataArray[nom][3];
 	hoursDay=$("#hoursDay").val();
 	hoursCompleted=$("#hoursCompleted").val()
 	hoursRequired=parseInt(hoursRequired);
@@ -572,16 +574,22 @@ $(document).ready(function(){
 
 function run()
 {	
-	
+	test();
+	do
+	{
+	if(nom == 0)
+	{
 	entryForm();
+	}
 	if (illNumD==1)
 	{	alert("Error: One of the numbers input was not a number.");return;}
 	findWeekDay();
 	algorithm();
 	hourTicker();
 	truncateYear();
-	alert(startDateM + "/" + startDateD + "/" + startDateY);
+	//alert(startDateM + "/" + startDateD + "/" + startDateY);
+	
+	nom = nom + 1;
+	}while(nom < tableRows);
 	
 }
-
-*/
