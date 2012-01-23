@@ -1,7 +1,7 @@
 //Jake, your impact variable is found. Use this to figure out how the impact affects your math.
 //The Impacts section starts at Line 215.
 //Global Variables
-var hoursRequired;
+var hoursRequired=600;
 var hoursDay=6;
 var linum=0;
 var stringd="0";
@@ -34,9 +34,6 @@ var programId= "B0780000";
 var courseId= new Array();
 var programDataArray=new Array(); 
 var courseDataArray=new Array();
-var daycount;
-
-var debugString = "D";
  //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
 
 
@@ -123,17 +120,17 @@ do
 {
 	loadID = $("input.Loading:first").val();
 	$("input.Loading:first").removeClass("Loading");
-	courseId[c] = loadID;
+	courseId.push(loadID);
 	c = c+1;
 }while(c < tableRows);
 }
 
-
 function test(){
-
-
-
-
+tableOutputSetup();
+setArray();
+tagIDs();
+loadXml();
+loadIDs();
 
 retrieveCourseDX();
 
@@ -147,8 +144,8 @@ retrieveCourseDX();
 function getValues(){
 //	hoursRequired=$("#hoursRequired").val();
 	hoursRequired = courseDataArray[row][3];
-	hoursDay = programDataArray[3];
-	hoursCompleted=$("#hoursCompleted").val();
+	hoursDay=$("#hoursDay").val();
+	hoursCompleted=$("#hoursCompleted").val()
 	hoursRequired=parseInt(hoursRequired);
 	hoursDay=parseInt(hoursDay);
 	hoursCompleted=parseInt(hoursCompleted);
@@ -200,9 +197,9 @@ function entryForm(){
 	startDateM=$("#startDateM").val();
 	startDateD=$("#startDateD").val();
 	startDateY=$("#startDateY").val();
-	startDateM=parseInt(startDateM, 10);
-	startDateD=parseInt(startDateD, 10);
-	startDateY=parseInt(startDateY, 10);
+	startDateM=parseInt(startDateM);
+	startDateD=parseInt(startDateD);
+	startDateY=parseInt(startDateY);
 	if (isNaN(startDateM)==true)
 	{	illNumD=1;}
 	if (isNaN(startDateD)==true)
@@ -274,11 +271,11 @@ function findWeekDay(){
 	d.setMonth(startDateM-1);
 	startDay=d.getDay();
 	startDay=parseInt(startDay);
-//	console.log("original startDay " + startDay);
-//	if (startDay==0)
-//	{alert("No School on Sunday!");}
-//	if (startDay==6)
-//	{alert("No School on Saturday!");}
+	console.log("original startDay " + startDay);
+	if (startDay==0)
+	{alert("No School on Sunday!");}
+	if (startDay==6)
+	{alert("No School on Saturday!");}
 }
 function advance(){
 	dateFind();
@@ -289,13 +286,12 @@ function advance(){
 	foundExport=parseInt(found);
 	checkFound();
 	startDay=startDay+1;
-	//console.log("advance's startDay " + startDay);
+	console.log("advance's startDay " + startDay);
 	if (startDay > 6)
 		{startDay=0;}
 	startDateD=startDateD+1;
 	advanceMonth();
 	advanceYear();
-	console.log(anImpact);
 }
 
 function advanceMonth(){
@@ -391,7 +387,6 @@ function dateFind(){
 	//The form will require three inputs.
 	linum=0;
 		fuseDateA();
-		console.log(fusionStart);
 		$("ul li.ReadDate").addClass("notReadDate").removeClass("ReadDate");
 		while (linum!=65)
 		{
@@ -412,7 +407,7 @@ function dateFind(){
 				found=(impactstring.charAt(linum));
 				return;
 			}
-			found=0;
+			{found=0;}
 			$("ul li.notReadDate:first").addClass("ReadDate").removeClass("notReadDate");
 			linum=linum+1;
 			
@@ -451,7 +446,7 @@ function impact(){
 
 function hourTicker(){
 	hoursRemaining=hoursRequired - hoursCompleted;
-	daycount=0;
+	var daycount=0;
 	while (hoursRemaining >0)
 	{
 		advance();
@@ -459,14 +454,9 @@ function hourTicker(){
 		{	hoursRemaining=hoursRemaining - 0;}
 		if (anImpact==0)
 		{	hoursRemaining=hoursRemaining - hoursDay;}
-		
-		//console.log(anImpact);
-		//console.log(hoursRemaining);
-		
 		anImpact=0;
 		daycount=daycount+1;
-	//	console.log(startDay);
-		
+		console.log(startDay);
 	}
 	if (startDay==6)
 	{
@@ -479,11 +469,7 @@ function hourTicker(){
 		advance();
 		console.log("Trying to end on a Sunday, huh?");
 	}
-	if(hoursRemaining < 0)
-	{
-		advance();
-	}
-//	alert(daycount);
+	alert(daycount);
 }
 
 function truncateYear(){
@@ -496,10 +482,6 @@ $(document).ready(function(){
 	classify();
 	retrieval();
 	dateBreak();
-	tableOutputSetup();
-	loadXml();
-	setArray();
-	tagIDs();
 });
 
 function writeData() {
@@ -514,48 +496,24 @@ c = c + 1;
 }while(c < tableRows);
 }
 
-function tableSetup() 
-{
-	tableOutputSetup();
-}
 
 function run()
-{
-	row = 0;
-	tableSetup();
+{	
 	entryForm();
 	do
 	{
-	courseDataArray[row][5] = startDateM + "/" + startDateD + "/" + startDateY;
-	retrieveCourseDXv2();
-
+	test();
 	if (illNumD==1)
 	{	alert("Error: One of the numbers input was not a number.");return;}
 	findWeekDay();
 	algorithm();
 	hourTicker();
-//	truncateYear();
-	courseDataArray[row][4] = daycount;
-	courseDataArray[row][6] = startDateM + "/" + startDateD + "/" + startDateY;
-//	advance();
-/*	if (startDay==6)
-	{
-		advance();
-		advance();
-		console.log("Trying to end on a Saturday, huh?");
-	}
-	if (startDay==0)
-	{
-		advance();
-		console.log("Trying to end on a Sunday, huh?");
-	}*/
-	row = row + 1;
-	}while(row < tableRows);
-	writeData();
+	truncateYear();
+	}while(false);
 	//alert(startDateM + "/" + startDateD + "/" + startDateY);	
 }
 
-function retrieveCourseDXv1(){
+function retrieveCourseDX(){
 var searchIndex;
 var idFound=0;
 var xIA=0; //The program.
@@ -564,9 +522,11 @@ var xIC=0; //Used to return data.
 //output: programDataArray[]
 //output: courseDataArray[]
 //Find the Program
+do
+{
 
-do{
 searchIndex=xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
+
 
 if(searchIndex==programId)
 {	
@@ -575,8 +535,8 @@ if(searchIndex==programId)
 }
 if(searchIndex=="END")
 {
-	programDataArray[0] = (xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
-	programDataArray[1] = (xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
 	idFound = -1;
 	break;
 }
@@ -585,12 +545,13 @@ xIA=xIA+1;
 }while (idFound==0);
 if(idFound==1)
 {
-	programDataArray[0] = xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
-	programDataArray[1] = xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent;
-	programDataArray[2] = xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent;
-	programDataArray[3] = xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent;
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent);
+	programDataArray.push(xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent);
 }
-
+do
+{
 idFound=0;
 do
 {
@@ -612,87 +573,26 @@ xIB=xIB+1;
 }while(idFound==0);
 if(idFound==1)
 {
-	courseDataArray[row][0] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
-	courseDataArray[row][1] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent;
-	courseDataArray[row][2] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent;
-	courseDataArray[row][3] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent;
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent);
 	
 }
 if(idFound == -1)
 {
-	courseDataArray[row][0] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
-	courseDataArray[row][1] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent;
-}
-}
-
-function retrieveCourseDXv2(){
-var searchIndex;
-var idFound=0;
-var xIA=0; //The program.
-var xIB=0; //The course.
-var xIC=0; //Used to return data.
-//output: programDataArray[]
-//output: courseDataArray[]
-//Find the Program
-
-
-do{
-searchIndex=xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
-
-if(searchIndex==programId)
-{	
-	idFound=1;
-	break;
-}
-if(searchIndex=="END")
-{
-	programDataArray[0] = (xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent);
-	programDataArray[1] = (xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent);
-	idFound = -1;
-	break;
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent);
+	courseDataArray[row].push(xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent);
 }
 
-xIA=xIA+1;
-}while (idFound==0);
-if(idFound==1)
-{
-	programDataArray[0] = xmlDoc.getElementsByTagName("program")[xIA].attributes[0].textContent;
-	programDataArray[1] = xmlDoc.getElementsByTagName("program")[xIA].attributes[1].textContent;
-	programDataArray[2] = xmlDoc.getElementsByTagName("program")[xIA].attributes[2].textContent;
-	programDataArray[3] = xmlDoc.getElementsByTagName("program")[xIA].attributes[3].textContent;
-}
-
-idFound=0;
-do
-{
 
 
-searchIndex=xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
-courseId[xIB] = searchIndex;
 
-if(searchIndex==courseId[row] && searchIndex != "END")
-{
-	idFound=1;
-	break;
-}
-if(searchIndex == "END")
-{
-	idFound = -1;
-	break;
-}
-xIB=xIB+1;
-}while(idFound==0);
-if(idFound==1)
-{
-	courseDataArray[row][0] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
-	courseDataArray[row][1] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent;
-	courseDataArray[row][2] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[2].textContent;
-	courseDataArray[row][3] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[3].textContent;
-	
-}
-if(idFound == -1)
-{
-	courseDataArray[row][0] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[0].textContent;
-	courseDataArray[row][1] = xmlDoc.getElementsByTagName("program")[xIA].children[xIB].attributes[1].textContent;
-}
+
+row = row + 1;
+idFound = 0;
+}while(row < tableRows);
+xIA = 0;
+xIB = 0;
+row = 0;
 }

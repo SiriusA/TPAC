@@ -12,3 +12,7 @@ Week 3|TPAC|Began work on prototype Javascript|More than 10 hours|Finished proto
 12/7/11|TPAC|Finish TableExpansion functionality|1:20pm - 4:00pm|Page hang error is a phantasm. An illusion. Table now expands and contracts. Begun work on changing the computational input/output.
 12/8/11|TPAC|Switch computational input/output|3:20pm - 3:45pm|Program needs its input/output systems completely restructured.
 12/13/11|TPAC|Reconstruct Input/output| 1:30pm - 4:04pm|Made progress with the input/output system.
+12/16/11|TPAC|Further adaptation of I/O|1:17pm - 4:00pm|Program loads values into the data array. This is a success.
+1/4/12|TPAC|Output to page completed|2:00pm - 2:20pm|Success.
+1/5/12|TPAC|Debugging|1:40pm - 3:42pm|Massive glitch involving the days off not working whatsoever.
+1/6/12|TPAC|Retooling|1:09pm - 2:47pm|The C++ program outputs the dates correctly.
