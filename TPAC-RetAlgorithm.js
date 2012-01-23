@@ -166,6 +166,7 @@ function algorithm() {
 	{	alert("Error: One of the numbers input was not a number.");return;}
 	totalDays=hoursRequired/hoursDay;
 }
+/*
 function checkFound() {
 	if (foundExport == 1)
 	{
@@ -188,13 +189,15 @@ function checkFound() {
 		anImpact=1;
 	}
 }
-
+*/
 //Retrieval Program
+/*
+
 function getNum(){
 	number=$("ul li#number").text();
 	number=parseInt(number)+2;
 }
-
+*/
 function entryForm(){
 	//this parses the form data. RUN THIS FIRST
 	startDateM=$("#startDateM").val();
@@ -210,7 +213,7 @@ function entryForm(){
 	if (isNaN(startDateY)==true)
 	{	illNumD=1;}
 }
-
+/*
 function classify(){
 $("ul li").addClass("notReadI").addClass("notReadDate").addClass("notNumdDate");
 }
@@ -227,7 +230,8 @@ function retrieval(){
 	linum=linum+1;
 	}
 }
-
+*/
+/*
 function monthBreak(){
 		if (numing.search("January")!=-1)
 			{numing=numing.replace("January","m01");}
@@ -266,7 +270,7 @@ function dateBreak(){
 		linum=linum+1;
 	}
 }
-
+*/
 function findWeekDay(){
 	var d=new Date();
 	d.setDate(startDateD)
@@ -372,6 +376,7 @@ function advanceYear(){
 	if (startDateM==13)
 		{startDateM=1; startDateY=startDateY+1;}
 }
+/*
 function fuseDateA(){
 	if ((startDateM.toString()).length=1)
 		{fusionStart="m0"+startDateM+" "+startDateD+" "+startDateY;}
@@ -382,6 +387,7 @@ function fuseDateA(){
 function fuseDateB(){
 	fusionImpact=dateMonth+" "+dateDay+" "+dateYear;
 }
+*/
 function dateFind(){
 	//This will require input from the other Javascript file. For now, we will use a theorized scenario.
 	//The other .js file will call this function.
@@ -419,7 +425,7 @@ function dateFind(){
 		}
 	
 	}
-
+/*
 function impact(){
 	var impacttype=0;
 	if (stringd.search("Employee Planning")!=-1)
@@ -448,7 +454,7 @@ function impact(){
 		{impacttype=13;}
 	impactstring=impactstring + impacttype;
 }
-
+*/
 function hourTicker(){
 	hoursRemaining=hoursRequired - hoursCompleted;
 	daycount=0;
