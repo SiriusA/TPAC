@@ -1,5 +1,5 @@
 //Jake, your impact variable is found. Use this to figure out how the impact affects your math.
-//The Impacts section starts at Line 215.
+//The Impacts section starts at Line 215 pubes.
 //Global Variables
 var hoursRequired;
 var hoursDay=6;
@@ -291,7 +291,8 @@ function advance(){
 	if (startDay==6)
 	{found=5;}
 	foundExport=parseInt(found);
-	checkFound();
+	//checkFound();//rhyu1234567890987654321`123456798765432345678998765432345678987654323456
+	checkday();
 	startDay=startDay+1;
 	//console.log("advance's startDay " + startDay);
 	if (startDay > 6)
@@ -300,6 +301,40 @@ function advance(){
 	advanceMonth();
 	advanceYear();
 	console.log(anImpact);
+}
+
+function checkday()
+{
+
+if (calendar[m][d][y] == 1)
+{
+	alert("employee Planning");
+}
+
+
+if (calendar[m][d][y] == 2)
+{
+	alert("holiday");
+
+}
+
+if (calendar[m][d][y] == 3)
+{
+	alert("dayoff");
+
+}
+
+if (calendar[m][d][y] == 4)
+{
+	alert("early release");
+
+}
+
+if (calendar[m][d][y] == 5)
+{
+	alert("weekends");
+}
+
 }
 
 function advanceMonth(){
@@ -388,6 +423,7 @@ function fuseDateB(){
 	fusionImpact=dateMonth+" "+dateDay+" "+dateYear;
 }
 */
+/*
 function dateFind(){
 	//This will require input from the other Javascript file. For now, we will use a theorized scenario.
 	//The other .js file will call this function.
@@ -425,6 +461,7 @@ function dateFind(){
 		}
 	
 	}
+*/
 /*
 function impact(){
 	var impacttype=0;
@@ -526,6 +563,42 @@ function tableSetup()
 }
 
 function run()
+{
+	row = 0;
+	tableSetup();
+	entryForm();
+	do
+	{
+	courseDataArray[row][5] = startDateM + "/" + startDateD + "/" + startDateY;
+	retrieveCourseDXv2();
+
+	if (illNumD==1)
+	{	alert("Error: One of the numbers input was not a number.");return;}
+	findWeekDay();
+	algorithm();
+	hourTicker();
+//	truncateYear();
+	courseDataArray[row][4] = daycount;
+	courseDataArray[row][6] = startDateM + "/" + startDateD + "/" + startDateY;
+//	advance();
+/*	if (startDay==6)
+	{
+		advance();
+		advance();
+		console.log("Trying to end on a Saturday, huh?");
+	}
+	if (startDay==0)
+	{
+		advance();
+		console.log("Trying to end on a Sunday, huh?");
+	}*/
+	row = row + 1;
+	}while(row < tableRows);
+	writeData();
+	//alert(startDateM + "/" + startDateD + "/" + startDateY);	
+}
+
+function test()
 {
 	row = 0;
 	tableSetup();
