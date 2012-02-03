@@ -131,7 +131,7 @@ int main(){
 
 	//output
 	of.open("calendar.js");
-	of<<"var calendar = new Array();\nvar c = 0;\nvar d = 0;\ndo\n{\n	calendar[c]=new Array();\n	d = 0;\n	do\n	{\n	calendar[c][d] = new Array();\n	d = d+1;\n	}while(d < 2);\n	c = c+1;\n	\n}while(c < 12);\n";
+	of<<"var calendar = new Array();\nvar c = 0;\nvar d = 0;\ndo\n{\n	calendar[c]=new Array();\n	d = 0;\n	do\n	{\n	calendar[c][d] = new Array();\n	d = d+1;\n	}while(d < 2050);\n	c = c+1;\n	\n}while(c < 31);\n";
 //	for(int i = 0; i < totalLineNum; i++)
 //	{
 //		of<<"calendar["<<impactDates[i][0]<<"]["<<impactDates[i][1]<<"]["<<impactDates[i][2]<<"] = "<<impactDates[i][3]<<";"<<endl;
@@ -145,12 +145,17 @@ int main(){
 				bool cakeLie = false;
 				for(int d = 0;d < totalLineNum; d++)
 				{
-					if( (impactDates[d][0] == a) && (impactDates[d][1] == b) && (impactDates[d][2] == c))
+					if( (impactDates[d][0]-1 == a) && (impactDates[d][1]-1 == b) && (impactDates[d][2] == c))
 					{
 						cakeLie = true;
 						of<<"calendar["<<a<<"]["<<b<<"]["<<c<<"] = "<<impactDates[d][3]<<";"<<endl;
 						break;
 					}
+					if(a == 6 && b == 3)//Fourth of July Code
+					{
+						cakeLie = true;
+						of<<"calendar["<<a<<"]["<<b<<"]["<<c<<"] = "<<2<<";"<<endl;
+					}	
 				}
 				if(cakeLie == false)
 				{

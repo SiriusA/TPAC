@@ -1,5 +1,5 @@
 //Jake, your impact variable is found. Use this to figure out how the impact affects your math.
-//The Impacts section starts at Line 215 pubes.
+//The Impacts section starts at Line 215.
 //Global Variables
 var hoursRequired;
 var hoursDay=6;
@@ -285,13 +285,13 @@ function findWeekDay(){
 //	{alert("No School on Saturday!");}
 }
 function advance(){
-	dateFind();
+//	dateFind();
 	if (startDay==0)
 	{found=5;}
 	if (startDay==6)
 	{found=5;}
 	foundExport=parseInt(found);
-	//checkFound();//rhyu1234567890987654321`123456798765432345678998765432345678987654323456
+	//checkFound();
 	checkday();
 	startDay=startDay+1;
 	//console.log("advance's startDay " + startDay);
@@ -300,41 +300,48 @@ function advance(){
 	startDateD=startDateD+1;
 	advanceMonth();
 	advanceYear();
-	console.log(anImpact);
+//	console.log(anImpact);
 }
 
 function checkday()
 {
 
-if (calendar[m][d][y] == 1)
+if (calendar[startDateM-1][startDateD-1][startDateY] == 1)
 {
-	alert("employee Planning");
+//	alert("employee Planning :" + startDateM + "/" + startDateD + "/" + startDateY);
+	anImpact = 1;
 }
 
 
-if (calendar[m][d][y] == 2)
+if (calendar[startDateM-1][startDateD-1][startDateY] == 2)
 {
-	alert("holiday");
-
+//	alert("holiday :" + startDateM + "/" + startDateD + "/" + startDateY);
+	anImpact = 1;
 }
 
-if (calendar[m][d][y] == 3)
+if (calendar[startDateM-1][startDateD-1][startDateY] == 3)
 {
-	alert("dayoff");
-
+//	alert("dayoff :" + startDateM + "/" + startDateD + "/" + startDateY);
+	anImpact = 1;
+	console.log(startDateM + "/" + startDateD + "/" + startDateY);
 }
 
-if (calendar[m][d][y] == 4)
+if (calendar[startDateM-1][startDateD-1][startDateY] == 4)
 {
-	alert("early release");
-
+//	alert("early release :" + startDateM + "/" + startDateD + "/" + startDateY);
+	anImpact = 0;
 }
-
-if (calendar[m][d][y] == 5)
+/*
+if (calendar[startDateM-1][startDateD-1][startDateY] == 5)
 {
-	alert("weekends");
+	alert("weekends :" + startDateM + "/" + startDateD + "/" + startDateY);
 }
+*/
 
+if(calendar[startDateM-1][startDateD-1][startDateY] == 0)
+{
+	anImpact = 0;
+}
 }
 
 function advanceMonth(){
@@ -495,11 +502,12 @@ function impact(){
 function hourTicker(){
 	hoursRemaining=hoursRequired - hoursCompleted;
 	daycount=0;
-	while (hoursRemaining >0)
+	var cake = 0;
+	while (hoursRemaining > 0)
 	{
 		advance();
 		if (anImpact==1)
-		{	hoursRemaining=hoursRemaining - 0;}
+		{	hoursRemaining=hoursRemaining - 0;cake++;}
 		if (anImpact==0)
 		{	hoursRemaining=hoursRemaining - hoursDay;}
 		
@@ -509,24 +517,33 @@ function hourTicker(){
 		anImpact=0;
 		daycount=daycount+1;
 	//	console.log(startDay);
-		
-	}
-	if (startDay==6)
-	{
-		advance();
-		advance();
-		console.log("Trying to end on a Saturday, huh?");
-	}
-	if (startDay==0)
-	{
-		advance();
-		console.log("Trying to end on a Sunday, huh?");
-	}
-	if(hoursRemaining < 0)
-	{
-		advance();
+
+		if (startDay==6)
+		{
+	startDateD=startDateD+1;
+	advanceMonth();
+	advanceYear();
+	startDay=startDay+1;
+	if (startDay > 6)
+		{startDay=0;}
+	startDateD=startDateD+1;
+	advanceMonth();
+	advanceYear();
+	startDay=startDay+1;
+		//	console.log("Trying to end on a Saturday, huh?");
+		}
+		if (startDay==0)
+		{
+			advance();
+			console.log("Trying to end on a Sunday, huh?");
+		}
+//		if(hoursRemaining < 0)
+//		{
+//			advance();
+//		}
 	}
 //	alert(daycount);
+//	alert(cake);
 }
 
 function truncateYear(){
@@ -535,10 +552,10 @@ function truncateYear(){
 }
 
 $(document).ready(function(){
-	getNum();
-	classify();
-	retrieval();
-	dateBreak();
+//	getNum();
+//	classify();
+//	retrieval();
+//	dateBreak();
 	tableOutputSetup();
 	loadXml();
 	setArray();
@@ -615,7 +632,7 @@ function test()
 	hourTicker();
 //	truncateYear();
 	courseDataArray[row][4] = daycount;
-	courseDataArray[row][6] = startDateM + "/" + startDateD + "/" + startDateY;
+	courseDataArray[row][6] = startDateM + "/" + (startDateD - 1) + "/" + startDateY;
 //	advance();
 /*	if (startDay==6)
 	{
