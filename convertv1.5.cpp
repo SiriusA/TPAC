@@ -155,6 +155,7 @@ int main(){
 					{
 						cakeLie = true;
 						of<<"calendar["<<a<<"]["<<b<<"]["<<c<<"] = "<<2<<";"<<endl;
+						break;
 					}	
 				}
 				if(cakeLie == false)
