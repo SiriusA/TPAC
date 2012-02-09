@@ -597,6 +597,7 @@ function run()
 	{	alert("Error: One of the numbers input was not a number.");return;}
 	findWeekDay();
 	algorithm();
+	calcRemainHours();
 	hourTicker();
 //	truncateYear();
 	courseDataArray[row][4] = daycount;
