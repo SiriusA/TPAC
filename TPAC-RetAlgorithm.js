@@ -35,7 +35,7 @@ var courseId= new Array();
 var programDataArray=new Array(); 
 var courseDataArray=new Array();
 var daycount;
-
+var numbers = new Array();
 var debugString = "D";
  //0 is the ID, don't use it. 1: Course name. 2: OCP. 3: Hours.
 
@@ -649,6 +649,25 @@ function test()
 	}while(row < tableRows);
 	writeData();
 	//alert(startDateM + "/" + startDateD + "/" + startDateY);	
+}
+
+function calcRemainHours()
+{
+	numbers[0]=$("#HC1").val();
+	numbers[1]=$("#HC2").val();
+	numbers[2]=$("#HC3").val();
+	numbers[3]=$("#HC4").val();
+	numbers[4]=$("#HC5").val();
+	numbers[5]=$("#HC6").val();
+	numbers[6]=$("#HC7").val();
+	numbers[7]=$("#HC8").val();
+	numbers[8]=$("#HC9").val();
+	numbers[9]=$("#HC10").val();
+	numbers[10]=$("#HC11").val();
+	numbers[11]=$("#HC12").val();
+	numbers[12]=$("#HC13").val();
+	numbers[13]=$("#HC14").val();
+	numbers[14]=$("#HC15").val();
 }
 
 function retrieveCourseDXv1(){
