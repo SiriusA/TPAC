@@ -19,24 +19,20 @@
 	
 	</tr>
 	<tr>
-	<td>Required Hours:</td>
-	<td><input type="text" id="hoursRequired"></td>
 	</tr>
 	<tr>
 	</tr>
 	<tr>
-	<td>Hours per Day:</td>
-	<td><input type="text" id="hoursDay"> </td>
 	</tr>
 	</table>
-		<input type="button" id="Calculate" value="Find your last day!" onclick="run()">
+		<input type="button" id="Calculate" value="Find your remaining days!" onclick="run()">
 		<input type="button" id="Calculate2" value="Find your last day!" onclick="test()">
 		<input type="button" id="deflate" value="Reduce the table size?" onclick="deflateTable()">
 		<input type="button" id="inflate" value="Increase table size?" onclick="expandTable()">
 	</br>
 	<table class="program">
 		<tr>
-			<td class="pr1"><input type="text" id="programID"/></td>
+			<td class="pr1">Program ID: <input type="text" id="programID"/></td>
 		</tr>
 		<tr>
 			<td class="pr2">Starting Month:
@@ -62,6 +58,7 @@
 	<table class="table1">	
 		<tr class="key">
 		<td>Id</td>
+		<td>Hours Completed</td>
 		<td>Course</td>
 		<td>OCP</td>
 		<td>Hours</td>
