@@ -500,7 +500,7 @@ function impact(){
 }
 */
 function hourTicker(){
-	hoursRemaining=hoursRequired - hoursCompleted;
+	hoursRemaining=hoursRequired - numbers[row];
 	daycount=0;
 	var cake = 0;
 	while (hoursRemaining > 0)
@@ -560,6 +560,10 @@ $(document).ready(function(){
 	loadXml();
 	setArray();
 	tagIDs();
+	for(var i = 0; i < 15; i++)
+	{
+		numbers[i] = 0;
+	}
 });
 
 function writeData() {
@@ -668,6 +672,10 @@ function calcRemainHours()
 	numbers[12]=$("#HC13").val();
 	numbers[13]=$("#HC14").val();
 	numbers[14]=$("#HC15").val();
+	for(var o;o <15;o++)
+	{
+		numbers[o] = parseInt(numbers[o])
+	}
 }
 
 function retrieveCourseDXv1(){
