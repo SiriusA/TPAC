@@ -3,6 +3,7 @@
 #include<fstream>
 #include<string>
 #include<sstream>
+#include<cstring>
 using namespace std;
 string convertInt(int linenum);
 
@@ -33,6 +34,7 @@ int main(){
 
 	is.open ("Calendar.txt");
 	b.write("<ul><li>",8);
+/*
 	while (is.good())
 	{
 		data=is.get();
@@ -57,10 +59,12 @@ int main(){
 		b.write("</li></ul>",10);
 		//test=b.str(); //Testing purposes only
 		//cout<<test<<endl; //Testing purposes only
-	is.close();
+	//is.close();
 	//Part2
-	is.open("TPACTemplate.htm");
-	of.open("TPAC.htm");
+	//is.open("TPACTemplate.htm");
+*/
+	of.open("calTest.txt");
+	/*
 	do {
 		data=is.get();
 		if (data=='`')
@@ -69,30 +73,68 @@ int main(){
 		} while (stop != 1);
 	//test=a.str(); //Testing purposes only
 	//cout<<test<<endl; //Testing purposes only
+	*/
 	while (is.good())
 	{	data=is.get();
 		c.put(data);
 	}
+	
 	//test=c.str(); //Testing purposes only
 	//cout<<test<<endl; //Testing purposes only
-	cake=a.str();
+//	cake=a.str();
+/*	
 	counting=cake.length();
 	for (int count=0; count<counting-1; count++)
 	{	data=a.get();
 		output.put(data);
 	}
-	cake=b.str();
-	counting=cake.length();
-	for (int count=0; count<counting; count++)
-	{	data=b.get();
-		output.put(data);
-	}
+*/
 	cake=c.str();
-	counting=cake.length();
-	for (int count=0; count<counting; count++)
-	{	data=c.get();
-		output.put(data);
+	bool m[12];
+	for(int i = 0; i < 12; i++)
+	{
+		m[i] = false;
 	}
+	string mo[12];
+	mo[0] = "January";
+	mo[1] = "February";
+	mo[2] = "March";
+	mo[3] = "April";
+	mo[4] = "May";
+	mo[5] = "June";
+	mo[6] = "July";
+	mo[7] = "August";
+	mo[8] = "September";
+	mo[9] = "October";
+	mo[10] = "November";
+	mo[11] = "December";
+	size_t found;
+	while(m[1] == false && m[2] == false && m[3] == false && m[4] == false && m[5] == false && m[6] == false && m[7] == false && m[8] == false && m[9] == false && m[10] == false && m[11] == false)
+	{
+		for(int i = 0; i < 12; i++)
+		{
+			while(m[i] == false)
+			{
+				found = cake.find(mo[i]);
+				if(found != string::npos)
+				{
+					stringstream x;
+					string x2;
+					x<<(i+1);
+					x2 = x.str();
+					cake.replace(found, mo[i].length(), x2);
+					//cout<<cake<<endl;
+				}
+				if(found == string::npos)
+				{
+					m[i] = true;
+					cout<<"bing\n";
+				}
+			}
+		}	
+	}
+	cout<<cake;
+	of<<cake;
 	//test=output.str(); //Testing purposes only
 	//cout<<test<<endl; //Testing purposes only
 	cake=output.str();

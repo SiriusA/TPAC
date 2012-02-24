@@ -148,7 +148,14 @@ function getValues(){
 //	hoursRequired=$("#hoursRequired").val();
 	hoursRequired = courseDataArray[row][3];
 	hoursDay = programDataArray[3];
-	hoursCompleted=$("#hoursCompleted").val();
+	var cmplstring = "#HC";
+	var x = row+1;
+	cmplstring = cmplstring + x;
+	hoursCompleted=$(cmplstring).val();
+	if(hoursCompleted == "HoursCompleted")
+	{
+		hoursCompleted = "0";
+	}
 	hoursRequired=parseInt(hoursRequired);
 	hoursDay=parseInt(hoursDay);
 	hoursCompleted=parseInt(hoursCompleted);
